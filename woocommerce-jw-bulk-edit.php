@@ -39,5 +39,24 @@ function wcjwbulkedit_load() {
 
 }
 
-// Add action to load plugin when plugins load
-add_action( 'plugins_loaded', 'wcjwbulkedit_load', 0 );
+
+// Add 'JW Bulk Import' link under WooCommerce menu
+add_action( 'admin_menu', '_add_menu_link' );
+
+  /**
+  * Add menu link.
+  *
+  * @return null
+  */
+  function _add_menu_link() {
+
+    // Add link in Woocommerce sub menu
+    add_submenu_page(
+    	'woocommerce',
+    	__( 'WooCommerce JW Bulk Edit ', 'woocommerce-jwbulkedit' ),
+    	__( 'JW Bulk Edit', 'woocommerce-jwbulkedit' ),
+    	'manage_woocommerce',
+    	'woocommerce-jwbulkedit',
+    	'wcjwbulkedit_load' );
+
+  }
